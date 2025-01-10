@@ -44,11 +44,38 @@ while attempts_remaining > 0 and "_" in display_word:
         else:
             # If it's the last index then it prints without a comma after
             print(wrong_guesses[i])
-    print() # new line
+    print() #new line
 
     # Ask user to guess a letter
     guess = input("Enter your guess: ").lower()
     
     # Validates input
-    #
-    
+    if len(guess) != 1 or not guess.isalpha():
+        print("Invalid input. Please enter a single letter.")
+        print()
+        continue
+    if guess in guessed_letters or guess in wrong_guesses:
+        print("You have already guessed ''" + guess + "' Try a different letter.")
+        print()
+        continue
+    print()
+
+    # Add guess to guessed letters list
+    guessed_letters.append(guess)
+
+    # Check if the guess is in the word
+    if guess in word_to_guess:
+        print("Good guess! '" + guess + "' is in the word.")
+        # Reveal the letter in its correct position(s)
+        for i in range(len(word_to_guess)):
+            if word_to_guess[i] == guess:
+                display_word[i] = guess
+                
+    else:
+        print("Sorry, '" + guess + "' is not in the word.")
+        # Add to wrong_guesses and subtract an attempt
+        wrong_guesses.append(guess)
+        attempts_remaining -= 1
+
+    # Stage 4: end of game win / lose conditions
+    # 
