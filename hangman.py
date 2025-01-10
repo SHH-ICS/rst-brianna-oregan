@@ -44,10 +44,11 @@ while attempts_remaining > 0 and "_" in display_word:
         else:
             # If it's the last index then it prints without a comma after
             print(wrong_guesses[i])
-    
+    print() # new line
+
     # Ask user to guess a letter
     guess = input("Enter your guess: ").lower()
     
     # Validates input
-    #THIS IS WHAT I NEED TO ADD NEXT :D
+    #
     
