@@ -34,19 +34,20 @@ while attempts_remaining > 0 and "_" in display_word:
     print()
     print("You have " + str(attempts_remaining) + " attemps remaining.")
     print("Incorrect guesses: ", end = "")
-    # Loop thru the indices of the wrong_guesses list
-    for i in range(len(wrong_guesses)):
-        # Check if the current index is not the last index in the list
-        if i < len(wrong_guesses) - 1:
-            # Prints current wrong guess followed by a comma
-            # Uses end to avoid moving to a new line after printing
-            print(wrong_guesses[i] + ", ", end = "")
-        else:
-            # If it's the last index then it prints without a comma after
-            print(wrong_guesses[i])
-    print() #new line
+    if wrong_guesses:
+        # Loop thru the indices of the wrong_guesses list
+        for i in range(len(wrong_guesses)):
+            # Check if the current index is not the last index in the list
+            if i < len(wrong_guesses) - 1:
+                # Prints current wrong guess followed by a comma
+                # Uses end to avoid moving to a new line after printing
+                print(wrong_guesses[i] + ", ", end = "")
+            else:
+                # If it's the last index then it prints without a comma after
+                print(wrong_guesses[i], end="")
 
     # Ask user to guess a letter
+    print() # Move to next line for input prompt
     guess = input("Enter your guess: ").lower()
     
     # Validates input
@@ -77,5 +78,9 @@ while attempts_remaining > 0 and "_" in display_word:
         wrong_guesses.append(guess)
         attempts_remaining -= 1
 
-    # Stage 4: end of game win / lose conditions
-    # 
+# Stage 4: end of game win / lose conditions
+if "_" not in display_word:
+    print("Congrats! You guessed the word: '" + word_to_guess + "', with " + str(attempts_remaining) + " attempts remaining!")
+else:
+    print("Game over! The word was: " + word_to_guess)
+        
