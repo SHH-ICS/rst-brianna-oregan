@@ -29,10 +29,10 @@ def play_hangman():
     while attempts_remaining > 0 and "_" in display_word:
         # Stage 3: game logic
         # DIsplay the current state of the word + game info
-        print("Your word: ", end = "")
-        for char in display_word:
-            print(char, end = "")
-        print()
+        print("Your word: " + " ".join(display_word))
+        #for char in display_word:
+          #  print(char, end = "")
+       # print()
         print("You have " + str(attempts_remaining) + " attemps remaining.")
         print("Incorrect guesses: ", end = "")
         if wrong_guesses:
