@@ -95,5 +95,5 @@ def play_hangman():
     else:
         print("Invalid input. Exiting the game.")
 
-# Starts game the 1st time
+# Starts the game
 play_hangman()
