@@ -3,9 +3,9 @@
 
 import random
 
-def play_hangman():
+def play_hangman(): # runs the whole game as a function so user can replay it later
     # Stage 1: setup for the game
-    # Word bank for the game
+    # Creates a list with word bank for the game
     word_bank = ["apple", "horror", "illusion", "vehicle", "obstacle", "conclusion"]
     
     # Randomly select a word from the word bank
@@ -14,7 +14,7 @@ def play_hangman():
     # List of blanks to represent the word
     display_word = ["_"] * len(word_to_guess)
     
-    # List to track guessed letters
+    # List to track guessed letters & wrong guesses
     guessed_letters = []
     wrong_guesses = []
     
@@ -28,13 +28,10 @@ def play_hangman():
     # Game loop
     while attempts_remaining > 0 and "_" in display_word:
         # Stage 3: game logic
-        # DIsplay the current state of the word + game info
-        print("Your word: " + " ".join(display_word))
-        #for char in display_word:
-          #  print(char, end = "")
-       # print()
+        # DIsplay the current state of the word + the game info
+        print("Your word: " + " ".join(display_word)) # .join displays the word with spaces between each letter
         print("You have " + str(attempts_remaining) + " attemps remaining.")
-        print("Incorrect guesses: ", end = "")
+        print("Incorrect guesses: ", end = "") # end stops it from going to a new line
         if wrong_guesses:
             # Loop thru the indices of the wrong_guesses list
             for i in range(len(wrong_guesses)):
@@ -45,11 +42,10 @@ def play_hangman():
                     print(wrong_guesses[i] + ", ", end = "")
                 else:
                     # If it's the last index then it prints without a comma after
-                    print(wrong_guesses[i], end="")
-    
+                    print(wrong_guesses[i], end="") # end makes it so it doesn't go to a new line because i was                                                          having issues with that
         # Ask user to guess a letter
         print() # Move to next line for input prompt
-        guess = input("Enter your guess: ").lower()
+        guess = input("Enter your guess: ").lower() # makes guess lowercase to make validation simpler
         
         # Validates input
         if len(guess) != 1 or not guess.isalpha():
@@ -63,7 +59,7 @@ def play_hangman():
         print()
     
         # Add guess to guessed letters list
-        guessed_letters.append(guess)
+        guessed_letters.append(guess) # .append adds to the end of the list
     
         # Check if the guess is in the word
         if guess in word_to_guess:
@@ -76,7 +72,7 @@ def play_hangman():
         else:
             print("Sorry, '" + guess + "' is not in the word.")
             # Add to wrong_guesses and subtract an attempt
-            wrong_guesses.append(guess)
+            wrong_guesses.append(guess) # .append adds to end of list
             attempts_remaining -= 1
     
     # Stage 4: end of game win / lose conditions
@@ -86,7 +82,7 @@ def play_hangman():
         print("Game over! The word was: " + word_to_guess)
     
     # Ask if user wants to play again
-    play_again = input("Play again? (Y/N): ").lower()
+    play_again = input("Play again? (Y/N): ").lower() # .lower makes it so it doesn't matter if user types Y or y
     
     if play_again == "y":
         play_hangman()
@@ -95,5 +91,5 @@ def play_hangman():
     else:
         print("Invalid input. Exiting the game.")
 
-# Starts the game
+# Starts the game since it's a function that won't run on its own
 play_hangman()
