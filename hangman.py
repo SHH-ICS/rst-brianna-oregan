@@ -85,6 +85,7 @@ def play_hangman(): # runs the whole game as a function so user can replay it la
     play_again = input("Play again? (Y/N): ").lower() # .lower makes it so it doesn't matter if user types Y or y
     
     if play_again == "y":
+        print()
         play_hangman()
     elif play_again == "n":
         print("Thanks for playing! Goodbye!")
